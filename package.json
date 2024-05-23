@@ -1,0 +1,32 @@
+{
+  "name": "hello_react",
+  "version": "1.0.0",
+  "description": "This is hello react project",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sanjeev501/hello-react.git"
+  },
+  "author": "Sanjeev Ivatury",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sanjeev501/hello-react/issues"
+  },
+  "homepage": "https://github.com/Sanjeev501/hello-react#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "postcss": "^8.4.38",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.4.3"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.23.0"
+  },
+  "browserslist": []
+}
