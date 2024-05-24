@@ -51,15 +51,15 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="search-container">
+      <div className="p-[10px]">
         <input
-          className="search-input"
+          className="rounded-sm border-[1px] border-[grey]"
           type="text"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
         <button
-          className="search-btn"
+          className="mx-[8px] px-[15px] rounded-sm border-[1px] border-[grey]"
           onClick={() => {
             let filteredRestroList = restroList?.filter((res) =>
               res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -70,10 +70,13 @@ const Body = () => {
           Search
         </button>
       </div>
-      <button className={clsName} onClick={handleFilterRestro}>
+      <button
+        className={`${clsName} m-[10px] p-[6px] rounded-xl border-[1px] border-[grey]`}
+        onClick={handleFilterRestro}
+      >
         {filterText}
       </button>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {filterList?.map((res) => (
           <div className="res-link-card">
             <Link key={res?.info?.id} to={"/restaurants/" + res?.info?.id}>

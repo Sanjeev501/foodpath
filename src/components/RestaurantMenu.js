@@ -24,37 +24,42 @@ const RestaurantMenu = () => {
       ?.card;
 
   return (
-    <div className="info-menu">
-      <h2>{name}</h2>
-      <div className="info-card">
-        <div className="ratings-line">
-          <h4>
-            {avgRatingString} ({totalRatingsString})
-          </h4>
-          <h4>{costForTwoMessage}</h4>
-        </div>
-        <div className="info-other-menu">
-          <h4>{cuisines?.join(", ")}</h4>
-          <h4>{sla?.slaString?.toLowerCase()}</h4>
-          <p>{feeDetails?.message?.replace(/<\/?[^>]+(>|$)/g, "")}</p>
+    <div className="mx-[250px] my-[0px]">
+      <h2 className="font-medium py-3">{name}</h2>
+      <div className="bg-gradient-to-b from-white via-orange-100 to-slate-200 px-4 py-4 rounded-b-3xl">
+        <div className="rounded-xl border border-gray-200 shadow-sm bg-white p-4">
+          <div className="flex justify-between flex-wrap w-[32%]">
+            <h4>
+              {avgRatingString} ({totalRatingsString})
+            </h4>
+            <p> | </p>
+            <h4>{costForTwoMessage}</h4>
+          </div>
+          <div className="py-5">
+            <h4>{cuisines?.join(", ")}</h4>
+            <h4>{sla?.slaString?.toLowerCase()}</h4>
+            <p>{feeDetails?.message?.replace(/<\/?[^>]+(>|$)/g, "")}</p>
+          </div>
         </div>
       </div>
-      <div className="menu-item">
+      <div className="p-[8px] flex flex-col">
         {console.log(itemCards)}
         <div>
           {itemCards?.map((item) => (
-            <div key={item?.card?.info?.name}>
-              <div className="menu-item-sections">
+            <div key={item?.card?.info?.name} className="py-2">
+              <div className="flex justify-between py-7 items-center">
                 <div>
-                  <h4>
+                  <h4 className="font-bold">
                     {item?.card?.info?.name} -
                     {` ${item?.card?.info?.itemAttribute?.vegClassifier}`}
                   </h4>
-                  <h5>{`${item?.card?.info?.price / 100}/-`}</h5>
+                  <h5 className="py-1">{`${
+                    item?.card?.info?.price / 100
+                  }/-`}</h5>
                   {item?.card?.info?.ratings?.aggregatedRating &&
                     item?.card?.info?.ratings?.aggregatedRating
                       ?.ratingCountV2 && (
-                      <h5>
+                      <h5 className="py-1">
                         ⭐{item?.card?.info?.ratings?.aggregatedRating?.rating}(
                         {
                           item?.card?.info?.ratings?.aggregatedRating
@@ -63,26 +68,28 @@ const RestaurantMenu = () => {
                         )
                       </h5>
                     )}
-                  <p className="menu-item-description">
-                    {item?.card?.info?.description}
-                  </p>
+                  <p className="w-[500px]">{item?.card?.info?.description}</p>
                 </div>
                 <div>
                   {
-                    <div className="menu-item-pic">
+                    <div className="flex flex-col items-center">
                       {item?.card?.info?.imageId !== undefined ? (
                         <>
                           <img
-                            className="img"
+                            className="w-[200px] h-[150px] rounded-[15px]"
                             alt="menu-item-pic"
                             src={CDN_MENU_ITEM_URL + item?.card?.info?.imageId}
                           />
-                          <button className="add-item-btn">Add</button>
+                          <button className="w-[120px] p-[10px] mt-[-20px] border-[0.5px] rounded-[10px] bg-white text-green-700 font-bold hover:bg-gray-200">
+                            Add
+                          </button>
                         </>
                       ) : (
                         <>
-                          <div className="img"></div>
-                          <button className="add-item-only-btn">Add</button>
+                          <span className="w-[200px] h-[150px] rounded-[15px]"></span>
+                          <button className="w-[120px] p-[10px] mt-[-110px] border-[0.5px] rounded-[10px] bg-white text-green-700 font-bold hover:bg-gray-200">
+                            Add
+                          </button>
                         </>
                       )}
                     </div>

@@ -7,11 +7,11 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
 
   return (
-    <div className="header">
-      <div>
+    <div className="flex justify-between bg-orange-50">
+      <Link className="w-24" to="/">
         <img className="logo" src={require("../../RestroLogo.png")} />
-      </div>
-      <div className="nav-items">
+      </Link>
+      <div className="text-base font-semibold">
         <ul className="flex p-4 m-4">
           <li className="px-4">Online Status: {onlineStatus ? "✅" : "🔴"}</li>
           <li className="px-4">
@@ -40,7 +40,6 @@ const Header = () => {
             </Link>
           </li>
           <button
-            className="loginBtn"
             onClick={() =>
               setLoginText(loginText == "Login" ? "Logout" : "Login")
             }
