@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import RestaurantCard, { withFastDeliveryLabel } from "./RestaurantCard";
+import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import { withFastDeliveryLabel } from "./withFasterDeliveryLabel";
 
 const Body = () => {
   const [restroList, setRestroList] = useState([]);
