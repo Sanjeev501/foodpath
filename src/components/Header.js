@@ -7,7 +7,7 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
 
   return (
-    <div className="flex justify-between bg-orange-50">
+    <div className="flex justify-between bg-gray-100">
       <Link className="w-24" to="/">
         <img className="logo" src={require("../../RestroLogo.png")} />
       </Link>

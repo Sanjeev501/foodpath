@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withFastDeliveryLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 
@@ -13,6 +13,8 @@ const Body = () => {
   const filteredResList = filterList?.filter((res) => {
     return res.info.avgRating > 4;
   });
+
+  const FastDeliveryRestaurantCard = withFastDeliveryLabel(RestaurantCard);
 
   const handleFilterRestro = () => {
     if (clsName == "filterOffbtn") {
@@ -80,7 +82,11 @@ const Body = () => {
         {filterList?.map((res) => (
           <div className="res-link-card">
             <Link key={res?.info?.id} to={"/restaurants/" + res?.info?.id}>
-              <RestaurantCard resData={res} />
+              {res?.info?.sla?.deliveryTime <= 30 ? (
+                <FastDeliveryRestaurantCard resData={res} />
+              ) : (
+                <RestaurantCard resData={res} />
+              )}
             </Link>
           </div>
         ))}

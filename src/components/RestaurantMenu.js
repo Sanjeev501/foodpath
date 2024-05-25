@@ -25,7 +25,7 @@ const RestaurantMenu = () => {
 
   return (
     <div className="mx-[250px] my-[0px]">
-      <h2 className="font-medium py-3">{name}</h2>
+      <h2 className="text-2xl font-medium py-3">{name}</h2>
       <div className="bg-gradient-to-b from-white via-orange-100 to-slate-200 px-4 py-4 rounded-b-3xl">
         <div className="rounded-xl border border-gray-200 shadow-sm bg-white p-4">
           <div className="flex justify-between flex-wrap w-[32%]">
