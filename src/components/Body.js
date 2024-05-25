@@ -15,6 +15,12 @@ const Body = () => {
   });
 
   const FastDeliveryRestaurantCard = withFastDeliveryLabel(RestaurantCard);
+  const searchRestro = () => {
+    let filteredRestroList = restroList?.filter((res) =>
+      res.info.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setFilterList(filteredRestroList);
+  };
 
   const handleFilterRestro = () => {
     if (clsName == "filterOffbtn") {
@@ -59,15 +65,11 @@ const Body = () => {
           type="text"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && searchRestro()}
         />
         <button
           className="mx-[8px] px-[15px] rounded-sm border-[1px] border-[grey]"
-          onClick={() => {
-            let filteredRestroList = restroList?.filter((res) =>
-              res.info.name.toLowerCase().includes(searchText.toLowerCase())
-            );
-            setFilterList(filteredRestroList);
-          }}
+          onClick={searchRestro}
         >
           Search
         </button>
@@ -80,7 +82,7 @@ const Body = () => {
       </button>
       <div className="flex flex-wrap">
         {filterList?.map((res) => (
-          <div className="res-link-card">
+          <div className="res-link-card" key={res?.info?.id}>
             <Link key={res?.info?.id} to={"/restaurants/" + res?.info?.id}>
               {res?.info?.sla?.deliveryTime <= 30 ? (
                 <FastDeliveryRestaurantCard resData={res} />
