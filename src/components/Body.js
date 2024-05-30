@@ -16,6 +16,7 @@ const Body = () => {
   });
 
   const FastDeliveryRestaurantCard = withFastDeliveryLabel(RestaurantCard);
+
   const searchRestro = () => {
     let filteredRestroList = restroList?.filter((res) =>
       res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -29,10 +30,7 @@ const Body = () => {
       setClsName("filterOnbtn");
       setFilterText("Ratings 4.0+ ❌");
     } else {
-      let searchList = restroList?.filter((res) => {
-        res.info.name.toLowerCase().includes(searchText.toLowerCase());
-      });
-      searchText == "" ? setFilterList(restroList) : setFilterList(searchList);
+      searchRestro();
       setClsName("filterOffbtn");
       setFilterText("Ratings 4.0+");
     }
