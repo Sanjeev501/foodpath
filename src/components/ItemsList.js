@@ -1,9 +1,18 @@
+import { useDispatch } from "react-redux";
 import { CDN_MENU_ITEM_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
+import { useState } from "react";
 
-const ItemsList = ({ data }) => {
+const ItemsList = ({ items }) => {
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
+  };
+
   return (
     <div>
-      {data?.itemCards?.map((item) => (
+      {items?.map((item, index) => (
         <div key={item?.card?.info?.name} className="py-2">
           <div className="flex justify-between py-7 items-center">
             <div>
@@ -33,7 +42,10 @@ const ItemsList = ({ data }) => {
                         src={CDN_MENU_ITEM_URL + item?.card?.info?.imageId}
                       />
 
-                      <button className="w-[120px] p-[10px] mt-[-20px] border-[0.5px] rounded-[10px] bg-white text-green-700 font-bold hover:bg-gray-200">
+                      <button
+                        className="w-[120px] p-[10px] mt-[-20px] border-[0.5px] rounded-[10px] bg-white text-green-700 font-bold hover:bg-gray-200"
+                        onClick={() => handleAddItem(item, index)}
+                      >
                         Add
                       </button>
                     </>
@@ -41,7 +53,10 @@ const ItemsList = ({ data }) => {
                     <>
                       <span className="w-[200px] h-[150px] rounded-[15px]"></span>
 
-                      <button className="w-[120px] p-[10px] mt-[-110px] border-[0.5px] rounded-[10px] bg-white text-green-700 font-bold hover:bg-gray-200">
+                      <button
+                        className="w-[120px] p-[10px] mt-[-110px] border-[0.5px] rounded-[10px] bg-white text-green-700 font-bold hover:bg-gray-200"
+                        onClick={() => handleAddItem(item)}
+                      >
                         Add
                       </button>
                     </>

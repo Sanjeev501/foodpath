@@ -16,7 +16,7 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
         </h1>
         <span className="text-lg py-3 px-5">⬇️</span>
       </div>
-      {showItems && <ItemsList data={data} />}
+      {showItems && <ItemsList items={data?.itemCards} />}
     </div>
   );
 };

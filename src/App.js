@@ -8,15 +8,20 @@ import About from "./components/About";
 import ContactUs from "./components/ContactUs";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import { Provider } from "react-redux";
+import store from "./utils/store.js";
+import Cart from "./components/Cart.js";
 
 const App = () => {
   return (
-    <UserContext.Provider value={{ loggedInUser: "Sanjeev Ivatury" }}>
-      <div className="App">
-        <Header />
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+    <Provider store={store}>
+      <UserContext.Provider value={{ loggedInUser: "Sanjeev Ivatury" }}>
+        <div className="App">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -50,6 +55,10 @@ const appRouter = createBrowserRouter([
             <Grocery />
           </Suspense>
         ),
+      },
+      {
+        path: "/Cart",
+        element: <Cart />,
       },
     ],
     errorElement: <Error />,
