@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <div className="flex justify-between bg-gray-100">
       <Link className="w-24" to="/">
-        <img className="logo" src={require("../../RestroLogo.png")} />
+        <img className="logo" src={require("../../Food.png")} />
       </Link>
       <div className="text-base font-semibold">
         <ul className="flex p-4 m-4">
