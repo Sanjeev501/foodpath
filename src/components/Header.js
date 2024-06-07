@@ -12,9 +12,9 @@ const Header = () => {
   const cartItems = useSelector((state) => state.cart.items);
 
   return (
-    <div className="flex justify-between bg-gray-100">
+    <div className="flex justify-between bg-orange-50">
       <Link className="w-24" to="/">
-        <img className="logo" src={require("../../Food.png")} />
+        <img className="logo" src={require("../../FoodPath.png")} />
       </Link>
       <div className="text-base font-semibold">
         <ul className="flex p-4 m-4">
@@ -34,7 +34,7 @@ const Header = () => {
               Contact Us
             </Link>
           </li>
-          <li className="px-4 font-bold">
+          <li className="px-4">
             <Link style={{ textDecoration: "none" }} to="/Cart">
               Cart - ({cartItems.length} items)
             </Link>
