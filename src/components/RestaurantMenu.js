@@ -52,7 +52,6 @@ const RestaurantMenu = () => {
         </div>
       </div>
       <div className="p-[8px] flex flex-col">
-        {console.log(itemCards, "itemCards")}
         {categories?.map((category, index) => {
           return (
             <RestaurantCategory

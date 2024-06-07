@@ -1,13 +1,28 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CDN_MENU_ITEM_URL } from "../utils/constants";
-import { addItem } from "../utils/cartSlice";
+import { addItem, removeItem } from "../utils/cartSlice";
 import { useState } from "react";
 
 const ItemsList = ({ items }) => {
+  const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
-  const handleAddItem = (item) => {
+  const handleIncrement = (item) => {
     dispatch(addItem(item));
+  };
+
+  const handleDecrement = (item) => {
+    dispatch(removeItem(item));
+  };
+
+  const cartCount = (cartItems, item) => {
+    let count = 0;
+    cartItems.forEach((element) => {
+      if (element?.card?.info?.name === item) {
+        count++;
+      }
+    });
+    return count;
   };
 
   return (
@@ -33,34 +48,42 @@ const ItemsList = ({ items }) => {
             </div>
             <div>
               {
-                <div className="flex flex-col items-center">
-                  {item?.card?.info?.imageId !== undefined ? (
-                    <>
+                <div className="flex flex-col items-center justify-center">
+                  <>
+                    {item?.card?.info?.imageId && (
                       <img
                         className="w-[200px] h-[150px] rounded-[15px]"
                         alt="menu-item-pic"
                         src={CDN_MENU_ITEM_URL + item?.card?.info?.imageId}
                       />
-
+                    )}
+                    {cartItems.length > 0 ? (
+                      <div>
+                        <button
+                          className="w-[45px] p-[10px] mt-[-20px] mx-[20px] border-[0.5px] rounded-[10px] bg-white text-green-700 font-bold hover:bg-gray-200"
+                          onClick={() => handleDecrement(item)}
+                        >
+                          -
+                        </button>
+                        <span className="font-bold">
+                          {cartCount(cartItems, item?.card?.info?.name)}
+                        </span>
+                        <button
+                          className="w-[45px] p-[10px] mt-[-20px] mx-[20px] border-[0.5px] rounded-[10px] bg-white text-green-700 font-bold hover:bg-gray-200"
+                          onClick={() => handleIncrement(item)}
+                        >
+                          +
+                        </button>
+                      </div>
+                    ) : (
                       <button
-                        className="w-[120px] p-[10px] mt-[-20px] border-[0.5px] rounded-[10px] bg-white text-green-700 font-bold hover:bg-gray-200"
-                        onClick={() => handleAddItem(item, index)}
+                        className="text-center w-[120px] p-[10px] mt-[-20px] mx-[40px] border-[0.5px] rounded-[10px] bg-white text-green-700 font-bold hover:bg-gray-200"
+                        onClick={() => handleIncrement(item)}
                       >
                         Add
                       </button>
-                    </>
-                  ) : (
-                    <>
-                      <span className="w-[200px] h-[150px] rounded-[15px]"></span>
-
-                      <button
-                        className="w-[120px] p-[10px] mt-[-110px] border-[0.5px] rounded-[10px] bg-white text-green-700 font-bold hover:bg-gray-200"
-                        onClick={() => handleAddItem(item)}
-                      >
-                        Add
-                      </button>
-                    </>
-                  )}
+                    )}
+                  </>
                 </div>
               }
             </div>

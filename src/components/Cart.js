@@ -10,8 +10,9 @@ const Cart = () => {
   };
 
   const cartItems = useSelector((state) => state.cart.items);
+  let cartFinalItems = [...new Set(cartItems)];
   return (
-    <div className="w-6/12 m-auto">
+    <div className="w-7/12 m-auto">
       <h1 className="text-center font-bold text-xl m-4">Cart</h1>
       <div>
         {cartItems.length > 0 ? (
@@ -22,7 +23,7 @@ const Cart = () => {
             >
               Clear Cart
             </button>
-            <ItemsList items={cartItems} />
+            <ItemsList items={cartFinalItems} />
           </div>
         ) : (
           <h6 className="text-center font-semibold text-xl m-4">
