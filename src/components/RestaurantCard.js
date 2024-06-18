@@ -15,7 +15,7 @@ const RestaurantCard = (props) => {
 
   return (
     <div
-      className="w-[237px] h-[330px] p-[6px] m-[5px]
+      className="w-[237px] h-[390px] p-[6px] m-[5px]
       rounded-[18px] transition-transform duration-200 ease transform scale-95 hover:scale-100"
     >
       <img
