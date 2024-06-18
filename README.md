@@ -12,5 +12,7 @@ Values and Commitment:
 At FoodPath, we believe in more than just delivering food. We are committed to sustainability by partnering with eco-friendly restaurants and using biodegradable packaging. Our customer-first approach ensures that every order is handled with care and precision, providing you with an unparalleled dining experience.
 
 Developer: Sanjeev Ivatury.
+
 Email: saisanjeev97@gmail.com
+
 This app is developed using React, JavaScript, HTML, Tailwind CSS, Redux Toolkit.
