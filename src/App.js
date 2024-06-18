@@ -15,12 +15,12 @@ import Cart from "./components/Cart.js";
 const App = () => {
   return (
     <Provider store={store}>
-      <UserContext.Provider value={{ loggedInUser: "Sanjeev Ivatury" }}>
-        <div className="App">
-          <Header />
-          <Outlet />
-        </div>
-      </UserContext.Provider>
+      {/* <UserContext.Provider value={{ loggedInUser: "Sanjeev Ivatury" }}> */}
+      <div className="App">
+        <Header />
+        <Outlet />
+      </div>
+      {/* </UserContext.Provider> */}
     </Provider>
   );
 };

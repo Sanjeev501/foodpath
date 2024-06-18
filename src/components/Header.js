@@ -1,18 +1,37 @@
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import UserContext from "../utils/UserContext";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userLoggedIn } from "../utils/profileSlice";
+import Modal from "./Modal";
 
 const Header = () => {
   const [loginText, setLoginText] = useState("Login");
+  const [showModal, setShowModal] = useState(false);
   const onlineStatus = useOnlineStatus();
-  const { loggedInUser } = useContext(UserContext);
+  // const { loggedInUser } = useContext(UserContext);
+
+  const username = useSelector((state) => state.profile.username);
+  const loggedIn = useSelector((state) => state.profile.loggedIn);
 
   const cartItems = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setLoginText(loggedIn ? "Logout" : "Login");
+  }, [loggedIn]);
+
+  const handleLogin = () => {
+    loginText == "Logout" ? dispatch(userLoggedIn(false)) : setShowModal(true);
+  };
+
+  const callModal = () => {
+    return <Modal />;
+  };
 
   return (
     <div className="flex justify-between bg-orange-50">
+      {showModal && callModal()}
       <Link className="w-24" to="/">
         <img className="logo" src={require("../../FoodPath.png")} />
       </Link>
@@ -44,14 +63,8 @@ const Header = () => {
               Grocery
             </Link>
           </li>
-          <button
-            onClick={() =>
-              setLoginText(loginText == "Login" ? "Logout" : "Login")
-            }
-          >
-            {loginText}
-          </button>
-          <li className="px-4 font-bold">User: {loggedInUser}</li>
+          <button onClick={() => handleLogin()}>{loginText}</button>
+          {loggedIn && <li className="px-4 font-bold"> User: {username}</li>}
         </ul>
       </div>
     </div>

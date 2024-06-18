@@ -3,6 +3,9 @@ import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import { withFastDeliveryLabel } from "./withFasterDeliveryLabel";
+import { apiData } from "../components/__mocks__/apiMock";
+import Modal from "./Modal";
+import { useSelector } from "react-redux";
 
 const Body = () => {
   const [restroList, setRestroList] = useState([]);
@@ -10,6 +13,7 @@ const Body = () => {
   const [clsName, setClsName] = useState("filterOffbtn");
   const [filterText, setFilterText] = useState("Ratings 4.0+");
   const [searchText, setSearchText] = useState("");
+  const loggedIn = useSelector((state) => state.profile.loggedIn);
 
   const filteredResList = filterList?.filter((res) => {
     return res.info.avgRating > 4;
@@ -40,17 +44,27 @@ const Body = () => {
     fetchData();
   }, []);
 
-  const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.37240&lng=78.43780&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+  const getUserName = () => {
+    return (
+      <div>
+        <Modal />
+      </div>
     );
-    const json = await data.json();
-    console.log(json, "json");
+  };
+
+  const fetchData = async () => {
+    // Turn this ON to get the real time Swiggy API Data.
+    // const data = await fetch(
+    //   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.37240&lng=78.43780&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    // );
+    // const json = await data.json();
     setRestroList(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      apiData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
     );
     setFilterList(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      apiData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
     );
   };
 
@@ -58,6 +72,7 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
+      {!loggedIn && getUserName()}
       <div className="p-[10px]">
         <input
           className="rounded-sm border-[1px] border-[grey]"
