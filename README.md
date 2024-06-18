@@ -1,6 +1,5 @@
 # foodpath
 Introduction:
-
 Welcome to the "FoodPath" application, your go-to destination for seamless food delivery. We are dedicated to bringing your favorite meals right to your doorstep with speed and convenience.Our mission is to transform your dining experience by connecting you with the best restaurants in town
 
 Our Story:
