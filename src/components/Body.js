@@ -75,6 +75,7 @@ const Body = () => {
       {!loggedIn && getUserName()}
       <div className="p-[10px]">
         <input
+          data-testid="searchInput"
           className="rounded-sm border-[1px] border-[grey]"
           type="text"
           value={searchText}
@@ -82,6 +83,7 @@ const Body = () => {
           onKeyDown={(e) => e.key === "Enter" && searchRestro()}
         />
         <button
+          data-testid="searchBtn"
           className="mx-[8px] px-[15px] rounded-sm border-[1px] border-[grey]"
           onClick={searchRestro}
         >
@@ -89,6 +91,7 @@ const Body = () => {
         </button>
       </div>
       <button
+        data-testid="filterBtn"
         className={`${clsName} m-[10px] p-[6px] rounded-xl border-[1px] border-[grey]`}
         onClick={handleFilterRestro}
       >

@@ -28,7 +28,11 @@ const ItemsList = ({ items }) => {
   return (
     <div>
       {items?.map((item, index) => (
-        <div key={item?.card?.info?.name} className="py-2">
+        <div
+          data-testid="foodItems"
+          key={item?.card?.info?.name}
+          className="py-2"
+        >
           <div className="flex justify-between py-7 items-center">
             <div>
               <h4 className="font-bold">
@@ -77,6 +81,7 @@ const ItemsList = ({ items }) => {
                       </div>
                     ) : (
                       <button
+                        data-testid="addBtn"
                         className="text-center w-[120px] p-[10px] mt-[-20px] mx-[40px] border-[0.5px] rounded-[10px] bg-white text-green-700 font-bold hover:bg-gray-200"
                         onClick={() => handleIncrement(item)}
                       >

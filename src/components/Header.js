@@ -33,6 +33,7 @@ const Header = () => {
     <div className="flex justify-between bg-orange-50">
       {showModal && callModal()}
       <Link className="w-24" to="/">
+        {/* Turn this on/off to see/hide the Logo of the app */}
         <img className="logo" src={require("../../FoodPath.png")} />
       </Link>
       <div className="text-base font-semibold">

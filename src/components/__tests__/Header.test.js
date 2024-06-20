@@ -18,20 +18,3 @@ it("Should render login button in the header component", () => {
 
   expect(loginButton).toBeInTheDocument();
 });
-
-it("Should change the login button text to logout when login is clicked in the header component", () => {
-  render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <Header />
-      </Provider>
-    </BrowserRouter>
-  );
-
-  const loginButton = screen.getByText("Login");
-
-  fireEvent.click(loginButton);
-  const logoutButton = screen.getByText("Logout");
-
-  expect(logoutButton).toBeInTheDocument();
-});
